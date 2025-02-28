@@ -1,0 +1,22 @@
+@startuml
+actor Оператор as User
+participant "Интерфейс оператора" as UI
+participant "Центральный контроллер" as Controller
+participant "Дозаторы" as Doser
+participant "Термостат" as Thermostat
+participant "Реактор" as Reactor
+participant "Датчики" as Sensors
+
+User -> UI: Запуск реакции
+UI -> Controller: Команда на запуск
+Controller -> Doser: Активировать дозаторы
+Doser --> Controller: Подтверждение активации
+Controller -> Thermostat: Установить температуру
+Thermostat --> Controller: Подтверждение температуры
+Controller -> Reactor: Запуск реакции
+Reactor --> Controller: Подтверждение запуска
+Controller -> Sensors: Запрос данных
+Sensors --> Controller: Данные (температура, давление)
+Controller -> UI: Отображение данных
+UI --> User: Отображение статуса реакции
+@enduml
